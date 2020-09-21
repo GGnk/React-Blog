@@ -1,0 +1,32 @@
+@import "src/assets/scss/variables";
+$height-header: 40px;
+$width-input-text: 300px;
+$width-date: 80px;
+
+header {
+    color: black;
+    width: 100%;
+    height: $height-header;
+    padding: 15px;
+
+    input[type='text'] {
+        width: $width-input-text;
+        font-size: 13px;
+        padding: 6px 0 4px 10px;
+        border: 1px solid #cecece;
+        background: #F6F6f6;
+        border-radius: 8px;
+        float: left;
+    }
+    .logo {
+        width: $width-main - $width-input-text - $width-date - 30px ;
+        float: left;
+        text-align: center;
+        font-size: 25px;
+    }
+    .date {
+        width: $width-date;
+        float: left;
+        font-size: 20px;
+    }
+}
