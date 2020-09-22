@@ -1,10 +1,9 @@
 import React from "react";
 import "./assets/scss/style.scss";
 
-import Header from './components/header'
+import {Header} from './components/header'
 
-function App() {
-
+export const App = () => {
   return (
     <main>
         <Header/>
@@ -12,4 +11,3 @@ function App() {
   );
 }
 
-export default App;

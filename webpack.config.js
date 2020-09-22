@@ -16,11 +16,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js(x?)$/,
-        use: 'babel-loader',
-        exclude: /node_modules/,
-      },
-      {
         test: /\.ts(x?)$/,
         use: {
           loader: 'ts-loader',
@@ -28,7 +23,18 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [ 'style-loader', 'css-loader', 'sass-loader']
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            // options: {
+            //   modules: {
+            //     localIdentName: '[name]__[local]--[hash:base64:5]',
+            //   },
+            // }
+          },
+          'sass-loader'
+        ]
       },
     ],
   },
