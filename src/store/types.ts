@@ -2,7 +2,7 @@ export type Article = {
     id: string;
     title: string;
     dateTime: string;
-    description: string;
+    content: string;
     img?: string;
     author?: string;
 };
