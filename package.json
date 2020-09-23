@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/GGnk/task_blog#readme",
   "devDependencies": {
+    "@reduxjs/toolkit": "^1.4.0",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
     "@typescript-eslint/eslint-plugin": "^4.1.1",
@@ -31,6 +32,8 @@
     "eslint-plugin-react-hooks": "^4.1.2",
     "html-webpack-plugin": "^4.4.1",
     "node-sass": "^4.14.1",
+    "redux-devtools": "^3.7.0",
+    "redux-devtools-extension": "^2.13.8",
     "sass-loader": "^10.0.2",
     "style-loader": "^1.2.1",
     "ts-loader": "^8.0.4",
@@ -39,8 +42,23 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "dependencies": {
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.1",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   }
 }
