@@ -1,5 +1,5 @@
 export type Article = {
-    id: string;
+    id: number;
     title: string;
     dateTime: string;
     content: string;
@@ -8,3 +8,9 @@ export type Article = {
 };
   
 export type ArticleState = Article[];
+
+export type Admin = {
+    logout: boolean,
+    admin: boolean
+};
+
