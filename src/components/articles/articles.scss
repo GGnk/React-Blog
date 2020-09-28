@@ -1,0 +1,38 @@
+@import "src/assets/scss/variables";
+$height-header: 40px;
+$width-input-text: 300px;
+$width-date: 200px;
+
+.articles {
+    .article {
+        display: block;
+        .article-wrap {
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .title {
+            align-items: center;
+            align-self: center;
+            display: flex;
+            flex-wrap: wrap;
+            flex: 1 1 100%;
+            font-size: 26px;
+            font-weight: bold;
+            justify-content: space-between;
+            span {
+
+            }
+        }
+        .img {
+            display: inline-flex;
+            width: 150px;
+            margin: 10px 0 15px 10px;
+        }
+        .content {
+            display: flex;
+            flex: 1 1;
+            margin: 10px;
+        }
+    }
+}
