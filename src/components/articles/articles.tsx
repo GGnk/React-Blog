@@ -10,7 +10,7 @@ export const Articles = () => {
 
     const list = data.map((article) => {
         return <ArticleComponent key={article.id} article={article} />
-    })
+    });
     return (
         <div className='articles'>
             {list}

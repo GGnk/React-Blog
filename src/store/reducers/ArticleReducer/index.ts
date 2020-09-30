@@ -45,9 +45,9 @@ export const ArticleSlice = createSlice({
      */
     removeArticle: (
       state: ArticleState,
-      action: PayloadAction<string>
+      action: PayloadAction<Number>
     ): ArticleState => {
-      return state.filter((article) => article.id != Number(action.payload));
+      return state.filter((article) => article.id != action.payload);
     },
     /**
      * Update Article in state

@@ -20,8 +20,13 @@ $width-date: 200px;
             font-size: 26px;
             font-weight: bold;
             justify-content: space-between;
-            span {
-
+            .title-h1-button {
+                h1 {
+                    display: inline-block;
+                }
+                span {
+                    margin: 5px;
+                }
             }
         }
         .img {

@@ -8,7 +8,8 @@ module.exports = {
   devtool: 'eval-source-map',
   devServer: {
     contentBase: './dist',
-    open: true
+    open: true,
+    historyApiFallback: true
   },
   output: {
     filename: '[name].bundle.js',
