@@ -8,11 +8,7 @@ import { selectArticleList } from "../../store/reducers/ArticleReducer";
 export const ArticleComponent = (props: any) => {
     const store = useSelector(selectAdminList);
     const data = useSelector(selectArticleList);
-    const article = () => {
-        if(props.article) return props.article
-        //TODO: исправить
-        return data.find((article) => article.id == props.match.params.id);
-    }
+    const article = props.article || data.find((article) => article.id == props.match.params.id);
     return (
 
         <div className='article'>
