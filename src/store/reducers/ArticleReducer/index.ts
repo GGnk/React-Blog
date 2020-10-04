@@ -1,35 +1,39 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { CaseReducer, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Article } from "../../../components/articles/blocks/article";
 import { RootState } from "../../index";
 
-import { ArticleState, Article } from "../../types";
+import { ArticleState, ArticleType } from "../../types";
 
-const initialState: ArticleState = [
-  {
+const initialState: ArticleState = {
+  articles: [
+    {
       id: 1,
-      title: 'Первая статья',
+      title: '1 статья',
       dateTime: '22/09/2020',
       content: 'Lorem ipsum dolor sit amet, maiores ornare ac fermentum, imperdiet ut vivamus a, nam lectus at nunc. Quam euismod sem, semper ut potenti pellentesque quisque. In eget sapien sed, sit duis vestibulum ultricies, placerat morbi amet vel, nullam in in lorem vel. In molestie elit dui dictum, praesent ...'
-  },
-  {
+    },
+    {
       id: 2,
-      title: 'Первая статья',
+      title: '2 статья',
       dateTime: '22/09/2020',
       content: 'Lorem ipsum dolor sit amet, maiores ornare ac fermentum, imperdiet ut vivamus a, nam lectus at nunc. Quam euismod sem, semper ut potenti pellentesque quisque. In eget sapien sed, sit duis vestibulum ultricies, placerat morbi amet vel, nullam in in lorem vel. In molestie elit dui dictum, praesent ...'
-  },
-  {
+    },
+    {
       id: 3,
-      title: 'Первая статья',
+      title: '3 статья',
       dateTime: '22/09/2020',
       content: 'Lorem ipsum dolor sit amet, maiores ornare ac fermentum, imperdiet ut vivamus a, nam lectus at nunc. Quam euismod sem, semper ut potenti pellentesque quisque. In eget sapien sed, sit duis vestibulum ultricies, placerat morbi amet vel, nullam in in lorem vel. In molestie elit dui dictum, praesent ...'
-  },
-  {
+    },
+    {
       id: 4,
-      title: 'Первая статья',
+      title: '4 статья',
       dateTime: '22/09/2020',
       content: 'Lorem ipsum dolor sit amet, maiores ornare ac fermentum, imperdiet ut vivamus a, nam lectus at nunc. Quam euismod sem, semper ut potenti pellentesque quisque. In eget sapien sed, sit duis vestibulum ultricies, placerat morbi amet vel, nullam in in lorem vel. In molestie elit dui dictum, praesent ...'
-  }
-];
-
+    }
+  ],
+  article:<ArticleType> {},
+}
+// TODO: Доделать
 export const ArticleSlice = createSlice({
   name: "article",
   initialState,
@@ -37,7 +41,7 @@ export const ArticleSlice = createSlice({
     /**
      * Add Article at state
      */
-    addArticle: (state: ArticleState, action: PayloadAction<Article>): ArticleState => {
+    addArticle: (state, action: PayloadAction<ArticleType>):ArticleState => {
       return [...state, action.payload];
     },
     /**
@@ -52,7 +56,7 @@ export const ArticleSlice = createSlice({
     /**
      * Update Article in state
      */
-    updateArticle: (state: ArticleState, action: PayloadAction<Article>): ArticleState => {
+    updateArticle: (state: ArticleState, action: PayloadAction<ArticleType>): ArticleState => {
       return state.map((article) => {
         const { payload } = action;
         if (article.id !== payload.id) return article;

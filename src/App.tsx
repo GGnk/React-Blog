@@ -2,15 +2,13 @@ import React from "react";
 import "./assets/scss/style.scss";
 import { Route } from 'react-router-dom'
 import {Header} from './components/header'
-import { AdminBar } from "./components/adminBar";
-import { Articles } from "./components/articles";
+import { ArticleComponent } from "./components/articles";
 
-export const App = () => {
+export const App = (props:any) => {
   return (
     <main>
         <Header/>
-        <AdminBar/>
-        <Route exact  path='/' component={ Articles }/>
+        <Route path='/' component={ ArticleComponent }/>
     </main>
   );
 };

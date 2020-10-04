@@ -1,1 +1,1 @@
-export {Articles} from './articles'
+export {ArticleComponent} from './ArticleComponent'

@@ -5,7 +5,7 @@ import {Admin, ArticleState} from "../../types";
 
 const initialState: Admin = {
   logout: true,
-  admin: false
+  admin: false,
 };
 
 export const AdminSlice = createSlice({

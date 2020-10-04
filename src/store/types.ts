@@ -1,4 +1,4 @@
-export type Article = {
+export type ArticleType = {
     id: number;
     title: string;
     dateTime: string;
@@ -7,7 +7,10 @@ export type Article = {
     author?: string;
 };
   
-export type ArticleState = Article[];
+export type ArticleState = {
+    articles: ArticleType[],
+    article: ArticleType
+}
 
 export type Admin = {
     logout: boolean,

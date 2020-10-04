@@ -7,7 +7,7 @@ module.exports = {
   entry: './src/index.tsx',
   devtool: 'eval-source-map',
   devServer: {
-    contentBase: './dist',
+    contentBase: path.resolve(__dirname, 'dist'),
     open: true,
     historyApiFallback: true
   },

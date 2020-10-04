@@ -9,14 +9,10 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
   module: {
     rules: [
-      {
-        test: /\.js(x?)$/,
-        use: 'babel-loader',
-        exclude: /node_modules/,
-      },
       {
         test: /\.ts(x?)$/,
         use: {

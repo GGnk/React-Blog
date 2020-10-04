@@ -21,8 +21,14 @@ $width-date: 200px;
             font-weight: bold;
             justify-content: space-between;
             .title-h1-button {
+                margin-left: 25px;
+                width: 83%;
                 h1 {
                     display: inline-block;
+                    text-transform: uppercase;
+                    a {
+                        text-decoration: none;
+                    }
                 }
                 span {
                     margin: 5px;
@@ -41,6 +47,21 @@ $width-date: 200px;
             line-height: 30px;
             font-size: 25px;
             color: grey;
+        }
+    }
+    &-edit {
+        &__input {
+            width: 100%;
+            height: 20px;
+            font-size: 25px;
+            padding: 10px;
+        }
+        &__textarea {
+            width: 100%;
+            margin-top: 10px;
+            font-size: 25px;
+            padding: 10px;
+            height: 34rem;
         }
     }
 }
