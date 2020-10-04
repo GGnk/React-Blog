@@ -18,9 +18,9 @@ export const Articles = ({ match }: any) => {
         <div className='articles'>
             <Switch>
                 <Route path='/' render={() => list}/>
-                <Route path='/article/:id' render={() => <ArticleComponent/>}/>
+                <Route path='article' render={() => list}/>
+                <Route path='article/:id' component={ArticleComponent}/>
             </Switch>
-            {list}
         </div>
     );
 };

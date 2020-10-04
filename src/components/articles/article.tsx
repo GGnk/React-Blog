@@ -4,18 +4,20 @@ import { BiTrash, BiPencil } from "react-icons/bi";
 import {useSelector} from "react-redux";
 import { selectAdminList } from "../../store/reducers/AdminReducer";
 import { selectArticleList } from "../../store/reducers/ArticleReducer";
+import {Link} from "react-router-dom";
 
 export const ArticleComponent = (props: any) => {
     const store = useSelector(selectAdminList);
     const data = useSelector(selectArticleList);
     const article = props.article || data.find((article) => article.id == props.match.params.id);
+    console.log(article)
     return (
 
         <div className='article'>
             <div className={'article-wrap'}>
                 <div  className={'title'}>
                     <div className={'title-h1-button'}>
-                        <h1>{article.title}</h1>
+                        <h1> <Link to={`/article/${article.id}`}>{article.title}</Link></h1>
                         {store.admin ?
                             <span>
                                 <BiTrash style={{color: 'red'}}/>
