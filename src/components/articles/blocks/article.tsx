@@ -1,10 +1,8 @@
 import React from "react";
-import { BiTrash, BiPencil } from "react-icons/bi";
+import {BiTrash, BiPencil, BiArrowToLeft} from "react-icons/bi";
 import {useSelector} from "react-redux";
 import { selectAdminList } from "../../../store/reducers/AdminReducer";
-import {Link} from "react-router-dom";
 import { selectArticleList } from "../../../store/reducers/ArticleReducer";
-import { AdminBar } from "../../adminBar";
 
 export const Article = (props: any):any => {
     const store = useSelector(selectAdminList);
@@ -12,19 +10,12 @@ export const Article = (props: any):any => {
     const article = props.article || articles.find((item) => item.id == props.match.params.id);
     return (
         <>
-            <AdminBar />
+            <Button admin={store.admin} back={props.history.goBack}/>
             <div className='article'>
                 <div className={'article-wrap'}>
                     <div  className={'title'}>
                         <div className={'title-h1-button'}>
-                            <h1> <Link to={`/article/${article.id}`}>{article.title}</Link></h1>
-                            {store.admin ?
-                                <span>
-                                    <BiTrash style={{color: 'red'}}/>
-                                    <BiPencil/>
-                                </span>
-                                : ''
-                            }
+                            <h1> {article.title}</h1>
                         </div>
 
                         <span>{article.dateTime}</span>
@@ -37,4 +28,29 @@ export const Article = (props: any):any => {
             </div>
         </>
     );
+};
+const Button = ({admin, back}:any) => {
+    return (
+        <div className='adminBar'>
+            {admin ?
+                <>
+                    <button
+                        className='btn btn-float-right icon'
+                    >
+                        <BiPencil/>
+                    </button>
+                    <button
+                        className='btn btn-float-right icon'
+                    >
+                        <BiTrash style={{color: 'red'}}/>
+                    </button>
+                </>
+                : ''}
+            <button
+                onClick={() => back()}
+                className='btn btn-float-right icon icon-left'
+            >
+                <BiArrowToLeft/>
+            </button>
+        </div>)
 };

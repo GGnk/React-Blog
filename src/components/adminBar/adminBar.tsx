@@ -4,8 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectAdminList} from "../../store/reducers/AdminReducer";
 import {authAdmin} from "../../store/reducers/AdminReducer/actions";
 
-export const AdminBar = ({ mode }:any) => {
-    console.log(mode)
+export const AdminBar = () => {
     const store = useSelector(selectAdminList);
     const dispatch = useDispatch();
 

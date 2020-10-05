@@ -12,7 +12,6 @@ export const ArticleComponent = () => {
                 <Switch>
                     <Route path='/article/:id' component={Article} />
                     <Route exact path='/edit' component={ArticleEdit} />
-                    <Route path='/edit/:id' component={ArticleEdit} />
                     <Route path='*' component={Articles} />
                 </Switch>
             </div>

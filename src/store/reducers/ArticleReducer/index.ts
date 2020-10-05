@@ -4,7 +4,8 @@ import { RootState } from "../../index";
 
 import { ArticleState, ArticleType } from "../../types";
 
-const initialState: ArticleState = {
+let initialState: ArticleState;
+initialState = {
   articles: [
     {
       id: 1,
@@ -31,8 +32,8 @@ const initialState: ArticleState = {
       content: 'Lorem ipsum dolor sit amet, maiores ornare ac fermentum, imperdiet ut vivamus a, nam lectus at nunc. Quam euismod sem, semper ut potenti pellentesque quisque. In eget sapien sed, sit duis vestibulum ultricies, placerat morbi amet vel, nullam in in lorem vel. In molestie elit dui dictum, praesent ...'
     }
   ],
-  article:<ArticleType> {},
-}
+  article: <ArticleType>{},
+};
 // TODO: Доделать
 export const ArticleSlice = createSlice({
   name: "article",
@@ -41,8 +42,9 @@ export const ArticleSlice = createSlice({
     /**
      * Add Article at state
      */
-    addArticle: (state, action: PayloadAction<ArticleType>):ArticleState => {
-      return [...state, action.payload];
+    addArticle: (state, action: PayloadAction<ArticleType>):any => {
+      const { articles } = state;
+      return [...articles, action.payload];
     },
     /**
      * Remove Article from state
@@ -50,14 +52,16 @@ export const ArticleSlice = createSlice({
     removeArticle: (
       state: ArticleState,
       action: PayloadAction<Number>
-    ): ArticleState => {
-      return state.filter((article) => article.id != action.payload);
+    ): any => {
+      const { articles } = state;
+      return articles.filter((article) => article.id != action.payload);
     },
     /**
      * Update Article in state
      */
-    updateArticle: (state: ArticleState, action: PayloadAction<ArticleType>): ArticleState => {
-      return state.map((article) => {
+    updateArticle: (state: ArticleState, action: PayloadAction<ArticleType>): any => {
+      const { articles } = state;
+      return articles.map((article) => {
         const { payload } = action;
         if (article.id !== payload.id) return article;
 
