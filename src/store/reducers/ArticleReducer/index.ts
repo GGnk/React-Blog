@@ -39,6 +39,11 @@ export const ArticleSlice = createSlice({
   name: "article",
   initialState,
   reducers: {
+    setArticle: (state, action: PayloadAction<{ key: string, value: string}>):void => {
+      const { article } = state;
+      const { payload } = action;
+      article[payload.key] = payload.value;
+    },
     /**
      * Add Article at state
      */
