@@ -29,7 +29,7 @@ const List = ({article}: any): any => {
                         {admin ?
                             <span>
                                 <BiTrash style={{color: 'red'}}/>
-                                <BiPencil/>
+                                <Link to={`/edit/${article.id}`}><BiPencil/></Link>
                             </span>
                             : ''
                         }

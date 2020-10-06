@@ -3,6 +3,7 @@ import {BiTrash, BiPencil, BiArrowToLeft} from "react-icons/bi";
 import {useSelector} from "react-redux";
 import { selectAdminList } from "../../../store/reducers/AdminReducer";
 import { selectArticleList } from "../../../store/reducers/ArticleReducer";
+import {Link} from "react-router-dom";
 
 export const Article = (props: any):any => {
     const store = useSelector(selectAdminList);
@@ -10,7 +11,7 @@ export const Article = (props: any):any => {
     const article = props.article || articles.find((item) => item.id == props.match.params.id);
     return (
         <>
-            <Button admin={store.admin} back={props.history.goBack}/>
+            <Button id={article.id} admin={store.admin} back={props.history.goBack}/>
             <div className='article'>
                 <div className={'article-wrap'}>
                     <div  className={'title'}>
@@ -29,7 +30,7 @@ export const Article = (props: any):any => {
         </>
     );
 };
-const Button = ({admin, back}:any) => {
+const Button = ({id, admin, back}:any) => {
     return (
         <div className='adminBar'>
             {admin ?
@@ -37,7 +38,8 @@ const Button = ({admin, back}:any) => {
                     <button
                         className='btn btn-float-right icon'
                     >
-                        <BiPencil/>
+                        <Link to={`/edit/${id}`}><BiPencil/></Link>
+
                     </button>
                     <button
                         className='btn btn-float-right icon'

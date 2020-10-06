@@ -8,12 +8,12 @@ import  { addArticle, removeArticle, updateArticle } from '.'
 export const postArticle = (Article: ArticleType): AppThunk => async (dispatch) => {
 
     const newArticle: ArticleType = { ...Article };
-  
+
     const response = await fetch(`$/link`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newArticle),
     });
-  
-    dispatch(addArticle(newArticle));
+
+    dispatch(addArticle());
 };

@@ -1,10 +1,17 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {BiArrowToLeft} from "react-icons/bi";
+import {selectArticleList} from "../../../store/reducers/ArticleReducer";
+import { setArticle, addArticle } from "../../../store/reducers/ArticleReducer";
 
 export const ArticleEdit = (props:any) => {
     console.log(props)
-    const mode = props.match.params.id ? 'edit' : 'save';
+    const mode = props.match.params.id ? 'edit' : 'publish';
+
+    const { article } = useSelector(selectArticleList);
+
+
+    const dispatch = useDispatch();
 
     return (
         <>
@@ -12,11 +19,17 @@ export const ArticleEdit = (props:any) => {
             <div className='articles-edit'>
                 <input
                     className='articles-edit__input'
-                    placeholder='Заголовок' type="text" />
+                    placeholder='Заголовок' type="text"
+                    value={article.title}
+                    onChange={(e) => dispatch(setArticle({ key: 'title', value: e.target.value}))}
+                />
+
                 <textarea
                     className='articles-edit__textarea'
                     placeholder='Основной текст .....'
-                    name="context">
+                    value={article.content}
+                    onChange={(e) => dispatch(setArticle({ key: 'content', value: e.target.value}))}
+                    name="content">
                 </textarea>
             </div>
         </>
@@ -24,11 +37,13 @@ export const ArticleEdit = (props:any) => {
 }
 const Button = ({mode, back}:any) => {
     const dispatch = useDispatch();
+
     return (
     <div className='adminBar'>
-        {mode === 'save' ?
+        {mode === 'publish' ?
             <button
                 className='btn btn-float-right'
+                onClick={() => dispatch(addArticle())}
             >Опубликовать</button>
         :
             <button
@@ -42,3 +57,7 @@ const Button = ({mode, back}:any) => {
         </button>
     </div>)
 };
+//
+// const mapStateToProps = {
+//     article:
+// }
