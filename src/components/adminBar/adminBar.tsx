@@ -1,23 +1,24 @@
 import React from "react";
 import './adminBar.scss';
-import {useDispatch, useSelector} from "react-redux";
-import {selectAdminList} from "../../store/reducers/AdminReducer";
-import {authAdmin} from "../../store/reducers/AdminReducer/actions";
+import {connect} from "react-redux";
 import {Link} from "react-router-dom";
+import { addArticle } from "../../store/reducers/ArticleReducer/actions";
+import { ArticleType } from "../../store/types";
 
-export const AdminBar = () => {
-    const store = useSelector(selectAdminList);
-    const dispatch = useDispatch();
+// TODO: доделать кнопки
+const AdminBar = ({ logout, admin }: any) => {
 
-    const adminButton = !store.logout || store.admin ?
+    const adminButton = !logout || admin ?
         <>
             <button className='btn btn-float-left'>
                 <Link to={'/edit'}>Добавить статью</Link>
             </button>
-            <button onClick={() => dispatch(authAdmin())} className='btn btn-float-right'>Выйти из редактирования</button>
+            <button 
+            // onClick={() => ()} 
+            className='btn btn-float-right'>Выйти из редактирования</button>
         </> :
         <button
-            onClick={() => dispatch(authAdmin())}
+            // onClick={() => ()}
             className='btn btn-float-right'
         >Режим редактирования</button>;
     return (
@@ -26,3 +27,13 @@ export const AdminBar = () => {
         </div>
     );
 }
+const mapStateToProps = (store: any) => ({
+    logout: store.admin.logout,
+    admin: store.admin.admin 
+})
+  
+const mapDispatchToProps = (dispatch: any) => ({
+    addArticle: (article: ArticleType) => dispatch(addArticle(article))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminBar)

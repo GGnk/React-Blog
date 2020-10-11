@@ -1,8 +1,14 @@
-import { AppThunk } from "../../index";
-import { Admin } from "../../types"
-import  { logoutAdmin, roleAdmin } from '.'
+import { Admin, LOGOUT_ADMIN, ROLE_ADMIN } from "../../types"
 
-export const authAdmin = (): AppThunk => (dispatch): void => {
-    dispatch(logoutAdmin());
-    dispatch(roleAdmin());
+export const logout = (payload: boolean) => {
+    return {
+        type: LOGOUT_ADMIN,
+        payload: payload
+    }
+};    
+export const editArticle = (payload: boolean) => {
+    return {
+        type: ROLE_ADMIN,
+        payload: payload
+    }
 };

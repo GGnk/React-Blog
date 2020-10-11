@@ -1,17 +1,21 @@
 import React from "react";
 import {BiTrash, BiPencil, BiArrowToLeft} from "react-icons/bi";
-import {useSelector} from "react-redux";
-import { selectAdminList } from "../../../store/reducers/AdminReducer";
-import { selectArticleList } from "../../../store/reducers/ArticleReducer";
+import {connect, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
+import { ArticleState } from "../../../store/types";
 
-export const Article = (props: any):any => {
-    const store = useSelector(selectAdminList);
-    const { articles } = useSelector(selectArticleList);
-    const article = props.article || articles.find((item) => item.id == props.match.params.id);
+//TODO: доделать кнопки
+const Article = (props: any):any => {
+    const { articles } = props;
+    console.log('Article', props)
+    const article = props.article || articles.find((item: { id: string; }) => item.id == props.match.params.id);
     return (
         <>
-            <Button id={article.id} admin={store.admin} back={props.history.goBack}/>
+            <Button 
+                id={article.id} 
+                admin={true} 
+                back={props.history.goBack}
+            />
             <div className='article'>
                 <div className={'article-wrap'}>
                     <div  className={'title'}>
@@ -56,3 +60,13 @@ const Button = ({id, admin, back}:any) => {
             </button>
         </div>)
 };
+
+const mapStateToProps = (store: any) => ({
+    articles: store.article
+})
+  
+const mapDispatchToProps = (dispatch: any) => ({
+    toggleOn: () => dispatch({ type: 'TOGGLE_IS_ON' })
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Article)

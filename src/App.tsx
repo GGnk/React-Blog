@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom'
 import {Header} from './components/header'
 import { ArticleComponent } from "./components/articles";
 
-export const App = (props:any) => {
+export const App: React.FC = () => {
   return (
     <main>
         <Header/>

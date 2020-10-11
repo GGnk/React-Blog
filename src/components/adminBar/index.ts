@@ -1,1 +1,1 @@
-export {AdminBar} from './adminBar'
+export { default } from './adminBar'

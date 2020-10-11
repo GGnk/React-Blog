@@ -1,9 +1,9 @@
 import React from "react";
 import './articles.scss';
 import { Route, Switch } from "react-router-dom";
-import { Article } from './blocks/article';
-import { Articles } from "./blocks/articles";
-import { ArticleEdit } from "./blocks/edit";
+import Article from './blocks/article';
+import Articles  from "./blocks/articles";
+import ArticleEdit from "./blocks/edit";
 
 export const ArticleComponent = () => {
     return (

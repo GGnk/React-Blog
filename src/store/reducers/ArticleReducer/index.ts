@@ -1,23 +1,10 @@
-import { CaseReducer, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Article } from "../../../components/articles/blocks/article";
-import { RootState } from "../../index";
+import { guid } from '../../../utils'
 
-import { ArticleState, ArticleType } from "../../types";
+import { ADD_ARTICLE, ArticleActionTypes, 
+  ArticleState, DELETE_ARTICLE, 
+  EDIT_ARTICLE } from "../../types";
 
-let initialState: ArticleState;
-const dateArticle = new Date();
-function guid():string {
-  function s4():string {
-    return Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1);
-  }
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-      s4() + '-' + s4() + s4() + s4();
-}
-
-initialState = {
-  articles: [
+export const initialState: ArticleState = [
     {
       id: '069badb9-73cd-fd0d-1ddf-a53d57d4fea5',
       title: "1 статья",
@@ -46,74 +33,39 @@ initialState = {
       content: 'Lorem ipsum dolor sit amet, maiores ornare ac fermentum, imperdiet ut vivamus a, nam lectus at nunc. Quam euismod sem, semper ut potenti pellentesque quisque. In eget sapien sed, sit duis vestibulum ultricies, placerat morbi amet vel, nullam in in lorem vel. In molestie elit dui dictum, praesent ...',
       author: 'admin'
     },
-  ],
-  article: <ArticleType>{
-    id: '',
-    title: '',
-    dateTime: dateArticle.getDate() + "/" + (dateArticle.getMonth() + 1) + "/" + dateArticle.getFullYear(),
-    content: '',
-    img: '',
-  },
-};
-const emptyArticle = {
-      id: '',
-      title: '',
-      dateTime: dateArticle.getDate() + "/" + (dateArticle.getMonth() + 1) + "/" + dateArticle.getFullYear(),
-      content: '',
-      img: '',
-    };
-const toObject = <K extends string, V, T extends { [P in K]: V }>(keyValuePair: { key: K, value: V }): T => {
-  const obj: any = {}
-  obj[keyValuePair.key] = keyValuePair.value
-  return obj as T
-};
-export const ArticleSlice = createSlice({
-  name: "article",
-  initialState,
-  reducers: {
-    setArticle: (state, action: PayloadAction<{ key: string, value: string}>):void => {
-      const { article } = state;
-      const { payload } = action;
-      article[payload.key] = payload.value;
-    },
-    /**
-     * Add Article at state
-     */
-    addArticle: (state) => {
-      let { articles, article } = state;
-      article.id = guid();
-      console.log('Я вроде работаю')
-      articles.splice(0, 0, article);
-    },
-    /**
-     * Remove Article from state
-     */
-    removeArticle: (
-      state: ArticleState,
-      action: PayloadAction<String>
-    ): any => {
-      const { articles } = state;
-      return articles.filter((article) => article.id != action.payload);
-    },
-    /**
-     * Update Article in state
-     */
-    updateArticle: (state: ArticleState, action: PayloadAction<ArticleType>): any => {
-      const { articles } = state;
-      return articles.map((article) => {
+];
+
+export function ArticleReducer(
+  state = initialState,
+  action: ArticleActionTypes
+) {
+  switch (action.type) {
+    case ADD_ARTICLE:
+      const art = action.payload;
+      art.id = guid();
+      const dateArticle = new Date();
+      art.dateTime = dateArticle.getDate() + "/" + (dateArticle.getMonth() + 1) + "/" + dateArticle.getFullYear();
+      return [...state, art];
+    case EDIT_ARTICLE:
+      return state.map((article) => {
         const { payload } = action;
         if (article.id !== payload.id) return article;
-
+    
         return {
           ...article,
           ...payload,
         };
       });
-    },
-  },
-});
+    case DELETE_ARTICLE:
+      const articles = state;
+      return articles.filter((article) => article.id !== action.payload.id);
+    default:
+      return state
+  }
+}
 
-export const { setArticle, addArticle, removeArticle, updateArticle } = ArticleSlice.actions;
-export const selectArticleList = (state: RootState) => state.article;
-export default ArticleSlice.reducer;
-
+// setArticle: (state, action: PayloadAction<{ key: string, value: string}>):void => {
+//   const { article } = state;
+//   const { payload } = action;
+//   article[payload.key] = payload.value;
+// },

@@ -1,15 +1,14 @@
 import React from "react";
-import {useSelector} from "react-redux";
-import { selectArticleList } from "../../../store/reducers/ArticleReducer";
+import { connect } from "react-redux";
 import { BiPencil, BiTrash } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import { selectAdminList } from "../../../store/reducers/AdminReducer";
-import { AdminBar } from "../../adminBar";
+import AdminBar  from "../../adminBar";
+import { ArticleState, ArticleType } from "../../../store/types";
 
-export const Articles = ():any => {
-    const { articles } = useSelector(selectArticleList);
-    const data = articles.map((article) => {
-        return <List key={article.id} article={article} />
+const Articles = ({ articles, admin }: any) => {
+    console.log('Консоль статей', articles)
+    const data = articles.map((article:ArticleType) => {
+        return <List key={article.id} article={article} admin={ admin }/>
     });
     return <>
         <AdminBar />
@@ -17,9 +16,7 @@ export const Articles = ():any => {
     </>
 };
 
-const List = ({article}: any): any => {
-    const {admin} = useSelector(selectAdminList);
-
+const List = ({article, admin}: any): any => {
     return (
         <div className='article'>
             <div className={'article-wrap'}>
@@ -45,3 +42,15 @@ const List = ({article}: any): any => {
         </div>
     )
 }
+
+
+const mapStateToProps = (state: any) => ({
+    articles: state.article,
+    admin: state.admin.admin
+});
+  
+const mapDispatchToProps = (dispatch: any) => ({
+    toggleOn: () => dispatch({ type: 'TOGGLE_IS_ON' })
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Articles)
