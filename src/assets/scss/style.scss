@@ -8,3 +8,22 @@ main {
 .logo {
     font-size: 50px;
 }
+.btn {
+    width: max-content;
+    height: $height;
+    &.btn-float-left {
+        float: left;
+    }
+    &.btn-float-right {
+        float: right;
+    }
+    &.icon {
+        border: none;
+        padding: 5px;
+        line-height: 5px;
+        font-size: 25px;
+        &>.icon-left {
+
+        }
+    }
+}

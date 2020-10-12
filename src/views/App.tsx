@@ -1,8 +1,8 @@
 import React from "react";
-import "./assets/scss/style.scss";
+import "../assets/scss/style.scss";
 import { Route } from 'react-router-dom'
 import {Header} from './components/header'
-import { ArticleComponent } from "./components/articles";
+import { ArticleComponent } from "./Article";
 
 export const App: React.FC = () => {
   return (

@@ -2,13 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { BiPencil, BiTrash } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import AdminBar  from "../../adminBar";
+import AdminBar  from "../../components/adminBar";
 import { ArticleState, ArticleType } from "../../../store/types";
+import { del } from "../../../store/reducers/ArticleReducer/actions";
 
-const Articles = ({ articles, admin }: any) => {
+const Articles = ({ articles, admin, delArticle }: any) => {
     console.log('Консоль статей', articles)
     const data = articles.map((article:ArticleType) => {
-        return <List key={article.id} article={article} admin={ admin }/>
+        return <List key={article.id} article={article} admin={ admin } delArticle={delArticle}/>
     });
     return <>
         <AdminBar />
@@ -16,7 +17,7 @@ const Articles = ({ articles, admin }: any) => {
     </>
 };
 
-const List = ({article, admin}: any): any => {
+const List = ({article, delArticle, admin}: any): any => {
     return (
         <div className='article'>
             <div className={'article-wrap'}>
@@ -25,8 +26,17 @@ const List = ({article, admin}: any): any => {
                         <h1> <Link to={`/article/${article.id}`}>{article.title}</Link></h1>
                         {admin ?
                             <span>
-                                <BiTrash style={{color: 'red'}}/>
-                                <Link to={`/edit/${article.id}`}><BiPencil/></Link>
+                                <button
+                                    onClick={() => delArticle(article.id)}
+                                    className='btn btn-float-right icon'
+                                >
+                                    <BiTrash style={{color: 'red'}}/>
+                                </button>
+                                <button
+                                    className='btn btn-float-right icon'
+                                >
+                                    <Link to={`/edit/${article.id}`}><BiPencil/></Link>
+                                </button>
                             </span>
                             : ''
                         }
@@ -50,7 +60,7 @@ const mapStateToProps = (state: any) => ({
 });
   
 const mapDispatchToProps = (dispatch: any) => ({
-    toggleOn: () => dispatch({ type: 'TOGGLE_IS_ON' })
+    delArticle: (id: string) => dispatch(del(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Articles)

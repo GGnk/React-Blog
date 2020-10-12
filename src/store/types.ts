@@ -2,13 +2,13 @@ export const ADD_ARTICLE = 'ADD_ARTICLE'
 export const EDIT_ARTICLE = 'EDIT_ARTICLE'
 export const DELETE_ARTICLE = 'DELETE_ARTICLE'
 
-export const LOGOUT_ADMIN = 'EDIT_ARTICLE'
-export const ROLE_ADMIN = 'DELETE_ARTICLE'
+export const LOGOUT_ADMIN = 'LOGOUT_ADMIN'
+export const ROLE_ADMIN = 'ROLE_ADMIN'
 
 export interface ArticleType {
     id: string;
     title: string;
-    dateTime: string;
+    dateTime?: string| any;
     content: string;
     img?: string | any;
     author?: string | any;
@@ -36,9 +36,7 @@ interface EditArticle {
 
 interface DeleteArticle {
     type: typeof DELETE_ARTICLE
-    payload: {
-      id: string
-    }
+    payload: string
 }
 
 export type ArticleActionTypes = AddArticle | EditArticle | DeleteArticle

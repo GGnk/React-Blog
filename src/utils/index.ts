@@ -12,11 +12,3 @@ export const toObject = <K extends string, V, T extends { [P in K]: V }>(keyValu
     obj[keyValuePair.key] = keyValuePair.value
     return obj as T
 };
-
-export const emptyArticle = {
-    id: '',
-    title: '',
-    dateTime: '',
-    content: '',
-    img: '',
-  };

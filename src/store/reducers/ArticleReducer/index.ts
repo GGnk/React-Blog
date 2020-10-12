@@ -41,10 +41,12 @@ export function ArticleReducer(
 ) {
   switch (action.type) {
     case ADD_ARTICLE:
+      console.log('I work', action.payload)
       const art = action.payload;
       art.id = guid();
       const dateArticle = new Date();
       art.dateTime = dateArticle.getDate() + "/" + (dateArticle.getMonth() + 1) + "/" + dateArticle.getFullYear();
+      art.author = 'admin'
       return [...state, art];
     case EDIT_ARTICLE:
       return state.map((article) => {
@@ -58,7 +60,7 @@ export function ArticleReducer(
       });
     case DELETE_ARTICLE:
       const articles = state;
-      return articles.filter((article) => article.id !== action.payload.id);
+      return articles.filter((article) => article.id !== action.payload);
     default:
       return state
   }
