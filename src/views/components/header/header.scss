@@ -1,6 +1,9 @@
 @import "src/assets/scss/variables";
 $height-header: 40px;
-$width-input-text: 300px;
+$height-header-320: 80px;
+$width-input-text-1024: 300px;
+$width-input-text-768: 32%;
+$width-input-text-425: 32%;
 $width-date: 200px;
 
 header {
@@ -9,24 +12,59 @@ header {
     height: $height-header;
     padding: 15px;
 
+    @media screen and (max-width: 424px) {
+        height: $height-header-320;
+    }
+
     input[type='text'] {
-        width: $width-input-text;
+        width: $width-input-text-1024;
         font-size: 13px;
         padding: 6px 0 4px 10px;
         border: 1px solid #cecece;
         background: #F6F6f6;
         border-radius: 8px;
         float: left;
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            width: $width-input-text-768;
+        }
+        @media (min-width: 425px) and (max-width: 767px) {
+            width: $width-input-text-425;
+        }
+        @media screen and (max-width: 424px) {
+            width: 100%;
+        }
     }
     .logo {
-        width: $width-main - $width-input-text - $width-date - 30px ;
+        width: $width-main - $width-input-text-1024 - $width-date - 30px ;
         float: left;
         text-align: center;
         font-size: 25px;
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            width: $width-input-text-768;
+        }
+        @media (min-width: 425px) and (max-width: 767px) {
+            width: $width-input-text-425;
+        }
+        @media screen and (max-width: 424px) {
+            width: 100%;
+        }
     }
     input[type='date']  {
         width: $width-date;
         float: left;
         font-size: 20px;
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            width: $width-input-text-768;
+        }
+        @media (min-width: 425px) and (max-width: 767px) {
+            width: $width-input-text-425;
+        }
+        @media screen and (max-width: 424px) {
+            width: 100%;
+        }
     }
+
 }

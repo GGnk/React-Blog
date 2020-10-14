@@ -1,29 +1,52 @@
 @import "reset";
 @import "variables";
+@import "mixin";
 
 main {
-    width: $width-main;
+    max-width: $width-main;
     margin: 0 auto;
-}
-.logo {
-    font-size: 50px;
-}
-.btn {
-    width: max-content;
-    height: $height;
-    &.btn-float-left {
+    .logo {
+        font-size: 50px;
+    }
+    .btn {
+        width: max-content;
+        height: $height;
+        border: none;
+    }
+    .btn_float_left {
         float: left;
     }
-    &.btn-float-right {
+    .btn_float_right {
         float: right;
     }
-    &.icon {
-        border: none;
+    .btn_green {
+        background: #58a28a;
+        a {
+            color: white;
+        }
+    }
+    .btn_black {
+        background: black;
+        color: white;
+        a {
+            color: white;
+        }
+    }
+    .btn_blue {
+        background: #286075;
+        color: white;
+        a {
+            color: white;
+        }
+    }
+    .icon {
         padding: 5px;
         line-height: 5px;
         font-size: 25px;
-        &>.icon-left {
 
-        }
+    }
+    a {
+        text-decoration: none;
+        color: black;
     }
 }

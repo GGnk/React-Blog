@@ -1,25 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './adminBar.scss';
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import { RootState } from "../../../store";
-import { Adminlogin, AdminLogout } from "../../../store/reducers/AdminReducer/actions";
+import { Adminlogin } from "../../../store/reducers/AdminReducer/actions";
+import store from 'store';
 
-// TODO: доделать кнопки
-const AdminBar = ({ logout, admin, loginAction, logoutAction }: any) => {
+const AdminBar = ({ logout, admin, loginAction }: any) => {
+    const cacheAdmin = store.get('admin');
+    const cacheLogout = store.get('logout');
 
-    const adminButton = !logout || admin ?
+    useEffect(() => {
+        loginAction(!cacheLogout && cacheAdmin)
+    }, []);
+
+    useEffect(() => {
+        store.set('admin', admin)
+        store.set('logout', logout)
+    }, [admin, logout]);
+    
+    const adminButton = !logout && admin ?
         <>
-            <button className='btn btn-float-left'>
+            <button className='btn btn_float_left btn_green'>
                 <Link to={'/edit'}>Добавить статью</Link>
             </button>
             <button 
-            onClick={() => logoutAction()} 
-            className='btn btn-float-right'>Выйти из редактирования</button>
+            onClick={() => loginAction(false)} 
+            className='btn btn_float_right btn_black'>Выйти из редактирования</button>
         </> :
         <button
-            onClick={() => loginAction()}
-            className='btn btn-float-right'
+            onClick={() => loginAction(true)}
+            className='btn btn_float_right btn_blue'
         >Режим редактирования</button>;
     return (
         <div className='adminBar'>
@@ -33,8 +44,7 @@ const mapStateToProps = (store: RootState) => ({
 })
   
 const mapDispatchToProps = (dispatch: any) => ({
-    loginAction: () => dispatch(Adminlogin()),
-    logoutAction: () => dispatch(AdminLogout()),
+    loginAction: (login: boolean) => dispatch(Adminlogin(login)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminBar)

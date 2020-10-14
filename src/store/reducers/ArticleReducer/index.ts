@@ -2,7 +2,7 @@ import { guid } from '../../../utils'
 
 import { ADD_ARTICLE, ArticleActionTypes, 
   ArticleState, DELETE_ARTICLE, 
-  EDIT_ARTICLE } from "../../types";
+  EDIT_ARTICLE} from "../../types";
 
 export const initialState: ArticleState = [
     {
@@ -59,8 +59,7 @@ export function ArticleReducer(
         };
       });
     case DELETE_ARTICLE:
-      const articles = state;
-      return articles.filter((article) => article.id !== action.payload);
+      return state.filter((article) => article.id !== action.payload);
     default:
       return state
   }

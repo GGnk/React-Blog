@@ -30,17 +30,17 @@ const ArticleEdit = ({ match, articles, addArticle, editArticle, history}:any) =
             <div className='adminBar'>
                 {mode === 'publish' ?
                     <button
-                        className='btn btn-float-right'
+                        className='btn btn_float_right'
                         onClick={() => addArticle(article)}
                     >Опубликовать</button>
                 :
                     <button
                         onClick={() => editArticle(article)}
-                        className='btn btn-float-right'
+                        className='btn btn_float_right'
                     >Сохранить</button>}
                 <button
                     onClick={() => history.goBack()}
-                    className='btn btn-float-right icon icon-left'
+                    className='btn btn_float_right icon icon-left'
                 >
                     <BiArrowToLeft/>
                 </button>
@@ -70,7 +70,10 @@ const mapStateToProps = (store: RootState) => ({
 })
   
 const mapDispatchToProps = (dispatch: any) => ({
-    addArticle: (article: ArticleType) => dispatch(add(article)),
+    addArticle: (article: ArticleType) => {
+        dispatch(add(article))
+        
+    },
     editArticle: (article: ArticleType) => dispatch(edit(article)),
     delArticle: (id: string) => dispatch(del(id)),
 });

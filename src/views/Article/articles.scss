@@ -6,14 +6,10 @@ $block: 'articles';
 
 .#{$block} {
     .article {
-        display: block;
-        .article-wrap {
-            align-items: center;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .title {
-            align-items: center;
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        .header {
             align-self: center;
             display: flex;
             flex-wrap: wrap;
@@ -21,18 +17,28 @@ $block: 'articles';
             font-size: 26px;
             font-weight: bold;
             justify-content: space-between;
-            .title-h1-button {
+            .article__header__title {
                 margin-left: 25px;
-                width: 83%;
+                width: 74%;
+                @media screen and (max-width: 424px) {
+                    width: 100%;
+                }
                 h1 {
                     display: inline-block;
                     text-transform: uppercase;
                     a {
                         text-decoration: none;
+                        color: #286075;
                     }
                 }
                 span {
                     margin: 5px;
+                }
+            }
+            .article__header__date {
+                width: 20%;
+                @media screen and (max-width: 424px) {
+                    display: none;
                 }
             }
         }
@@ -48,6 +54,15 @@ $block: 'articles';
             line-height: 30px;
             font-size: 25px;
             color: grey;
+            @media (min-width: 425px) and (max-width: 767px) {
+                height: 150px;
+                overflow: hidden;
+            }
+            @media screen and (max-width: 424px) {
+                height: 150px;
+                overflow: hidden;
+                white-space: break-spaces;
+            }
         }
     }
     &-edit {

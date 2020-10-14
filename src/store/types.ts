@@ -5,6 +5,20 @@ export const DELETE_ARTICLE = 'DELETE_ARTICLE'
 export const LOGOUT_ADMIN = 'LOGOUT_ADMIN'
 export const ROLE_ADMIN = 'ROLE_ADMIN'
 
+export const FIND_ARTICLE = 'FIND_ARTICLE'
+
+export type FindType = {
+  title?: string,
+  dateTime?: string
+};
+interface ArticleFind {
+  type: typeof FIND_ARTICLE
+  payload: {
+    title?: string,
+    dateTime?: string
+  }
+}
+
 export interface ArticleType {
     id: string;
     title: string;
@@ -39,7 +53,7 @@ interface DeleteArticle {
     payload: string
 }
 
-export type ArticleActionTypes = AddArticle | EditArticle | DeleteArticle
+export type ArticleActionTypes = ArticleFind | AddArticle | EditArticle | DeleteArticle
 
 
 interface Logout {

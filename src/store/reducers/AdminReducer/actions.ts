@@ -14,11 +14,7 @@ export const admin = (payload: boolean) => {
     }
 };
 
-export const Adminlogin = (): AppThunk => dispatch => {
-    dispatch(logout(false))
-    dispatch(admin(true))
-} 
-export const AdminLogout = (): AppThunk => dispatch => {
-    dispatch(logout(true))
-    dispatch(admin(false))
+export const Adminlogin = (authentication: boolean): AppThunk => dispatch => {
+    dispatch(logout(!authentication))
+    dispatch(admin(authentication))
 } 

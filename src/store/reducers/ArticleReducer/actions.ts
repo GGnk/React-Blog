@@ -1,24 +1,25 @@
 import { AppThunk } from "../..";
-import { ArticleType, ADD_ARTICLE, DELETE_ARTICLE, EDIT_ARTICLE } from "../../types"
+import { ArticleType, ADD_ARTICLE, DELETE_ARTICLE, EDIT_ARTICLE, ArticleActionTypes, FIND_ARTICLE } from "../../types"
 
-export const addArticle = (payload: ArticleType) => {
+export const addArticle = (payload: ArticleType): ArticleActionTypes => {
   return {
     type: ADD_ARTICLE,
     payload: payload
   }
 };
-export const editArticle = (payload: object) => {
+export const editArticle = (payload: {id: string}): ArticleActionTypes => {
   return {
     type: EDIT_ARTICLE,
     payload: payload
   }
 };
-export const deleteArticle = (payload: string) => {
+export const deleteArticle = (payload: string): ArticleActionTypes => {
   return {
     type: DELETE_ARTICLE,
     payload: payload
   }
 };
+
 export const add = (article: ArticleType): AppThunk => dispatch => {
   dispatch(addArticle(article))
 } 
